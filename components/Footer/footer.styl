@@ -1,0 +1,23 @@
+.page--docs__footer
+  background: #FFF
+  padding: rem($gutter-v 0)
+
+  ul
+    color: oc-gray-6
+    font-size: rem($font-size-secondary)
+
+  a, a:visited, a:hover
+    color: oc-gray-9
+
+  li
+    display: inline-block
+
+    &:after
+      content: '·'
+      margin: rem(0 10px)
+
+    &:last-child:after
+      content: ''
+
+  .icon-heart
+    color: oc-red-6

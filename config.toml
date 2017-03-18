@@ -1,0 +1,33 @@
+siteTitle = "Vijos Docs"
+vijosStaticHost = "//cdn.vijos.org/"
+vijosSiteTitle = "Vijos"
+vijosSiteUrl = "//vijos.org/"
+editUrl = "https://github.com/vijos/about.vijos.org/blob/master/pages"
+
+[[location]]
+match = "/about/:topic"
+links = [
+  { name = "dochome", href = "/" },
+  { name = "about", href_doc = "/about/" },
+]
+
+[[location]]
+match = "/help/:topic_lv1/:topic_lv2"
+links = [
+  { name = "dochome", href = "/" },
+  { name = "help_{topic_lv1}", href_doc = "/help/{topic_lv1}/" },
+]
+
+[[location]]
+match = "/404.html"
+links = [
+  { name = "dochome", href = "/" },
+]
+
+[i18n.link_name]
+dochome = "文档中心"
+about = "关于"
+help = "帮助"
+help_administrator = "管理员帮助"
+help_contributor = "开发者帮助"
+help_user = "用户帮助"

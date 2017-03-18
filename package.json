@@ -1,0 +1,27 @@
+{
+  "name": "about-vijos",
+  "description": "Contents of about.vijos.org",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "gatsby": "^0.12.38",
+    "lodash": "^4.17.2",
+    "open-color": "^1.5.1",
+    "path-to-regexp": "^1.7.0",
+    "react-document-title": "^2.0.1",
+    "rupture": "^0.6.2",
+    "string-sub": "0.0.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^0.12.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "gatsby build --prefix-links && gh-pages -d public"
+  }
+}
