@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 exports.modifyWebpackConfig = function (config, stage) {
   config.merge({
     stylus: {

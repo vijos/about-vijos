@@ -3,4 +3,5 @@ public/
 .gatsby-context.js
 .DS_Store
 *.sublime-*
+*.log
 !.gitkeep
