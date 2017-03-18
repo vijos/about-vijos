@@ -13,7 +13,8 @@ module.exports = React.createClass({
     const page = this.props.route.page;
     const footer = (
       <div className="supplementary">
-        <span className="icon icon-edit" /> Edit this page on <a href={`${config.editUrl}${page.path}`}>GitHub</a>
+        <span className="icon icon-edit" /> Edit this page
+        on <a href={`${config.editUrl}/${page.requirePath}`} target="_blank">GitHub</a>
       </div>
     );
     return (
