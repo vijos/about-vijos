@@ -1,6 +1,7 @@
 ---
 order: 1
 title: 联系我们
+description: 和开发者及 VJ 其他用户保持联系
 ---
 
 ### Vijos 用户交流

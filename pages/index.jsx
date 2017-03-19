@@ -1,18 +1,24 @@
 import _ from 'lodash';
 import React from 'react'
+import { Link } from 'react-router'
 import DocumentTitle from 'react-document-title'
-import Section from 'components/Section';
+import Section, { SectionHeader, SectionBody } from 'components/Section';
 import { resolveDocs } from 'utils/docHelper';
 import { i18n } from 'utils/i18n';
 import { config } from 'config'
 
+import './index.styl';
+
 function getPageList(pages) {
   return (
-    <ul>
-      {pages.map(page =>
-        (<li key={page.path}><a href={page.path}>{page.data.title}</a></li>)
-      )}
-    </ul>
+    <div className="typo"><ul>
+      {pages.map(page => (
+        <li key={page.path}>
+          <Link to={page.path}>{page.data.title}</Link>
+          { page.data.description ? <span className="supplementary page--docs__description">{page.data.description}</span> : null}
+        </li>
+      ))}
+    </ul></div>
   );
 }
 
@@ -21,27 +27,34 @@ export default class IndexPage extends React.Component {
   render() {
     const allPages = this.props.route.pages;
     return (
-      <DocumentTitle title={config.siteTitle}><div>
-        <Section title={i18n('link_name', 'about')}><div className="typo">
-          {getPageList(resolveDocs(allPages, '/about/'))}
-        </div></Section>
-        <Section title={i18n('link_name', 'help')}><div className="typo">
-          <div className="row">
-            <div className="medium-4 columns">
-              <h3>{i18n('link_name', 'help_user')}</h3>
-              {getPageList(resolveDocs(allPages, '/help/user/'))}
-            </div>
-            <div className="medium-4 columns">
-              <h3>{i18n('link_name', 'help_administrator')}</h3>
-              {getPageList(resolveDocs(allPages, '/help/administrator/'))}
-            </div>
-            <div className="medium-4 columns">
-              <h3>{i18n('link_name', 'help_contributor')}</h3>
-              {getPageList(resolveDocs(allPages, '/help/contributor/'))}
-            </div>
-          </div>
-        </div></Section>
-      </div></DocumentTitle>
+      <DocumentTitle title={config.siteTitle}>
+        <Section body={false}>
+          <SectionHeader>
+            {i18n('link_name', 'help_user')}
+          </SectionHeader>
+          <SectionBody>
+            {getPageList(resolveDocs(allPages, '/help/user/'))}
+          </SectionBody>
+          <SectionHeader>
+            {i18n('link_name', 'help_administrator')}
+          </SectionHeader>
+          <SectionBody>
+            {getPageList(resolveDocs(allPages, '/help/administrator/'))}
+          </SectionBody>
+          <SectionHeader>
+            {i18n('link_name', 'help_contributor')}
+          </SectionHeader>
+          <SectionBody>
+            {getPageList(resolveDocs(allPages, '/help/contributor/'))}
+          </SectionBody>
+          <SectionHeader>
+            {i18n('link_name', 'about')}
+          </SectionHeader>
+          <SectionBody>
+            {getPageList(resolveDocs(allPages, '/about/'))}
+          </SectionBody>
+        </Section>
+      </DocumentTitle>
     );
   }
 }

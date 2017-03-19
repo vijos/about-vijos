@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React from 'react';
+import { Link } from 'react-router'
 import pathToRegexp from 'path-to-regexp';
 import sub from 'string-sub';
 import { config } from 'config';
@@ -43,12 +44,11 @@ export default function Header(props) {
   return (
     <div className="page--docs__header">
       <div className="row"><div className="columns">
-        <div className="location-path"> /
-          {links.map(({ href, title }, idx) => <span key={idx}><a href={href}>{title}</a> / </span>)}
+        <div className="location-path"><span> / </span>
+          {links.map(({ href, title }, idx) => <span key={idx}><Link to={href}>{title}</Link> / </span>)}
         </div>
         <h1 className="location-current">{currentTitle}</h1>
       </div></div>
     </div>
   );
-  return (<div>123</div>);
 }

@@ -3,7 +3,13 @@ import _ from 'lodash';
 export function resolveDocs(allPages, path) {
   return _(allPages)
     .filter(page => page.path.indexOf(path) === 0)
-    .sortBy([page => page.data.order || 0])
+    .orderBy([
+      page => page.data.order || 0,
+      page => page.data.title,
+    ], [
+      'asc',
+      'asc',
+    ])
     .value();
 }
 
