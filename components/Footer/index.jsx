@@ -1,5 +1,7 @@
-import React from 'react';
 import './footer.styl';
+
+import React from 'react';
+import { config } from 'config'
 
 export default function Footer(props) {
   return (
@@ -10,7 +12,7 @@ export default function Footer(props) {
             Made with <span className="icon icon-heart"></span> by <a href="//vijos.org">Vijos.org</a>
           </li>
           <li>
-            Generated from public files on <a href="https://github.com/vijos/about.vijos.org" target="_blank">GitHub</a>
+            Generated from public files on <a href={config.projectUrl} target="_blank">GitHub</a>
           </li>
         </ul>
       </div></div>

@@ -2,7 +2,8 @@ siteTitle = "Vijos Docs"
 vijosStaticHost = "//cdn.vijos.org/"
 vijosSiteTitle = "Vijos"
 vijosSiteUrl = "//vijos.org/"
-editUrl = "https://github.com/vijos/about.vijos.org/blob/master/pages"
+projectUrl = "https://github.com/vijos/about-vijos"
+editUrl = "https://github.com/vijos/about-vijos/blob/master/pages"
 
 [[location]]
 match = "/about/:topic"

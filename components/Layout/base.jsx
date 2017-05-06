@@ -1,7 +1,8 @@
+import './layout.styl';
+
 import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import './layout.styl';
 
 export default class BaseLayout extends React.Component {
   render() {

@@ -1,3 +1,5 @@
+import './header.styl';
+
 import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router'
@@ -6,7 +8,6 @@ import sub from 'string-sub';
 import { config } from 'config';
 import { i18n } from 'utils/i18n';
 import { resolveFirstDoc } from 'utils/docHelper';
-import './header.styl';
 
 function buildLocationPath(currentLocation, allPages) {
   const links = [];
