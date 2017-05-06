@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+ <html data-layout="doc"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>安装 Vijos - Vijos Docs</title><link rel="stylesheet" href="//cdn.vijos.org/vendors.css"/><link rel="stylesheet" href="//cdn.vijos.org/vj4.css"/><script>
+  var _htmlNode = document.documentElement;
+  _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+  var UiContext = {
+    csrf_token: '',
+    cdn_prefix: "//cdn.vijos.org/",
+    url_prefix: "//vijos.org/",
+  };
+  var UserContext = null;
+</script><link rel="stylesheet" href="/styles.css"/></head><body><div id="react-mount"><div id="panel" class="page--docs" data-reactroot="" data-reactid="1" data-react-checksum="1788574786"><div class="page--docs__header" data-reactid="2"><div class="row" data-reactid="3"><div class="columns" data-reactid="4"><div class="location-path" data-reactid="5"><span data-reactid="6"> / </span><span data-reactid="7"><a href="//vijos.org/" data-reactid="8">Vijos</a><!-- react-text: 9 --> / <!-- /react-text --></span><span data-reactid="10"><a href="/" data-reactid="11">文档中心</a><!-- react-text: 12 --> / <!-- /react-text --></span><span data-reactid="13"><a href="/help/administrator/install/" data-reactid="14">管理员帮助</a><!-- react-text: 15 --> / <!-- /react-text --></span></div><h1 class="location-current" data-reactid="16">安装 Vijos</h1></div></div></div><div class="page--docs__document" data-reactid="17"><div class="row" data-reactid="18"><div class="columns" data-reactid="19"><div class="row" data-reactid="20"><div class="medium-9 columns" data-reactid="21"><div class="section" data-reactid="22"><div class="section__body" data-reactid="23"><div class="typo" data-reactid="24"><div data-reactid="25"><h1>前言</h1>
+<p>Vijos 由两部分组成：<a href="https://github.com/vijos/vj4">Web 服务端</a> 和 <a href="https://github.com/vijos/jd4">评测机</a>。本文将完整地介绍从源码部署安装 Vijos 服务端和评测机的步骤。</p>
+<ul>
+<li>
+<p>服务端和评测机不推荐运行在同一系统中，这会降低评测结果的准确度并且可能有潜在的安全问题。</p>
+</li>
+<li>
+<p>服务端能运行在 Windows、Linux、MacOS 操作系统中，但我们推荐使用 Linux 操作系统。</p>
+</li>
+<li>
+<p>评测机能安全地运行在 Windows 和 Linux 操作系统中，但我们推荐使用 Linux 操作系统。</p>
+</li>
+<li>
+<p>可以将评测机部署在多个系统中，这将横向地扩展评测能力。</p>
+</li>
+<li>
+<p>服务端需要部署在用户能网络访问到的环境中。评测机需要能访问到服务端，但用户不需要能访问到评测机。</p>
+<blockquote>
+<p>一个典型的场景是，服务端拥有一个公网 IP 可以被用户访问，而评测机位于 NAT 后端，能访问到服务端但不需要有公网 IP。</p>
+</blockquote>
+</li>
+</ul>
+<h1>服务端安装部署</h1>
+<p>我们推荐使用 Ubuntu 16.04 (Xenial) 作为 Web 服务端的操作系统。</p>
+<h2>1. 安装 Vijos 所需依赖</h2>
+<p>Vijos 依赖于以下软件工作：</p>
+<ul>
+<li><a href="https://www.python.org/downloads/">Python 3.5+</a></li>
+<li><a href="https://docs.mongodb.com/manual/installation/">MongoDB 3.0+</a></li>
+<li><a href="https://nodejs.org/en/download/">Node.js 6.0+</a></li>
+<li><a href="http://www.rabbitmq.com/">RabbitMQ</a></li>
+</ul>
+<p>本章将按照不同操作系统给出使用包管理工具的安装依赖软件的步骤。</p>
+<h3>1.1 对于 Debian 和 Ubuntu 系统</h3>
+<p>TODO</p>
+<h3>1.2 对于 RHEL, Fedora 和 CentOS 系统</h3>
+<p>TODO</p>
+<h3>1.3 对于 MacOS 系统</h3>
+<blockquote>
+<p>以下部署基于 <a href="https://brew.sh/">Homebrew</a> 包管理器，请在继续前先确保已安装 Homebrew。</p>
+</blockquote>
+<pre><code class="language-bash">brew install python3 rabbitmq mongodb node
+</code></pre>
+<h3>1.4 对于 Windows 系统</h3>
+<p>请分别访问这些软件的官方网站下载安装包。</p>
+<h2>2. 下载 Vijos 服务端源码</h2>
+<p>您可以使用 git 方式下载 <a href="https://github.com/vijos/vj4">Vijos 服务端</a> 源码，或直接在 GitHub 网页中点击 Download 按钮下载。</p>
+<p>对于 git 方式：</p>
+<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/vijos/vj4
+</code></pre>
+<h2>3. 安装 Python 依赖包</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># 在 vj4 目录下:</span>
+python3 -m pip install -r requirements.txt
+</code></pre>
+<h2>4. 安装 npm 依赖包</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># 在 vj4 目录下:</span>
+npm install
+</code></pre>
+<h2>5. 下载 IP 地址数据库 (可选)</h2>
+<p>Vijos 使用 <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">MaxMind GeoLite City DB</a> 数据库显示 IP 地址位置，这个数据库没有内置在源码中，若您要使用这个功能需要单独下载数据库：</p>
+<pre><code class="language-bash"><span class="hljs-comment"># 在 vj4 目录下:</span>
+curl <span class="hljs-string">"http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz"</span> | gunzip -c &gt; GeoLite2-City.mmdb
+</code></pre>
+<h2>6. 编译生成前端代码</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># 在 vj4 目录下:</span>
+npm run build
+</code></pre>
+<p>至此，您已安装完毕，接下来可以启动 Vijos 服务端（运行在 8888 端口）：</p>
+<pre><code class="language-bash"><span class="hljs-comment"># 在 vj4 目录下:</span>
+python3 -m vj4.server --debug --listen http://0.0.0.0:8888
+</code></pre>
+<h1>评测机的安装部署</h1>
+<p>TODO</p>
+</div></div></div><div class="section__footer" data-reactid="26"><div class="supplementary" data-reactid="27"><span class="icon icon-edit" data-reactid="28"></span><!-- react-text: 29 --> Edit this page on <!-- /react-text --><a href="https://github.com/vijos/about.vijos.org/blob/master/pages/help/administrator/install/index.md" target="_blank" data-reactid="30">GitHub</a></div></div></div></div><div class="medium-3 columns" data-reactid="31"><div class="section side" data-reactid="32"><ol class="menu" data-reactid="33"><li class="menu__item" data-reactid="34"><a class="menu__link active" href="/help/administrator/install/" data-reactid="35">安装 Vijos</a></li></ol></div></div></div></div></div></div><div class="page--docs__footer" data-reactid="36"><div class="row" data-reactid="37"><div class="columns" data-reactid="38"><ul data-reactid="39"><li data-reactid="40"><!-- react-text: 41 -->Made with <!-- /react-text --><span class="icon icon-heart" data-reactid="42"></span><!-- react-text: 43 --> by <!-- /react-text --><a href="//vijos.org" data-reactid="44">Vijos.org</a></li><li data-reactid="45"><!-- react-text: 46 -->Generated from public files on <!-- /react-text --><a href="https://github.com/vijos/about.vijos.org" target="_blank" data-reactid="47">GitHub</a></li></ul></div></div></div></div></div><script type="text/javascript" src="//cdn.vijos.org/manifest.js"></script><script type="text/javascript" src="//cdn.vijos.org/vendors.js"></script><script type="text/javascript" src="//cdn.vijos.org/vj4.js"></script></body></html>
