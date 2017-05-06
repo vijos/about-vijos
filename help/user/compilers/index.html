@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+ <html data-layout="doc"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>评测环境及编译器解释器参数 - Vijos Docs</title><link rel="stylesheet" href="//cdn.vijos.org/vendors.css"/><link rel="stylesheet" href="//cdn.vijos.org/vj4.css"/><script>
+  var _htmlNode = document.documentElement;
+  _htmlNode.className = _htmlNode.className.replace(' nojs', ' hasjs');
+  var UiContext = {
+    csrf_token: '',
+    cdn_prefix: "//cdn.vijos.org/",
+    url_prefix: "//vijos.org/",
+  };
+  var UserContext = null;
+</script><link rel="stylesheet" href="/styles.css"/></head><body><div id="react-mount"><div id="panel" class="page--docs" data-reactroot="" data-reactid="1" data-react-checksum="1662346787"><div class="page--docs__header" data-reactid="2"><div class="row" data-reactid="3"><div class="columns" data-reactid="4"><div class="location-path" data-reactid="5"><span data-reactid="6"> / </span><span data-reactid="7"><a href="//vijos.org/" data-reactid="8">Vijos</a><!-- react-text: 9 --> / <!-- /react-text --></span><span data-reactid="10"><a href="/" data-reactid="11">文档中心</a><!-- react-text: 12 --> / <!-- /react-text --></span><span data-reactid="13"><a href="/help/user/measurements/" data-reactid="14">用户帮助</a><!-- react-text: 15 --> / <!-- /react-text --></span></div><h1 class="location-current" data-reactid="16">评测环境及编译器解释器参数</h1></div></div></div><div class="page--docs__document" data-reactid="17"><div class="row" data-reactid="18"><div class="columns" data-reactid="19"><div class="row" data-reactid="20"><div class="medium-9 columns" data-reactid="21"><div class="section" data-reactid="22"><div class="section__body" data-reactid="23"><div class="typo" data-reactid="24"><div data-reactid="25"><h1>评测环境</h1>
+<p>操作系统：Ubuntu 16.04</p>
+<p>注意，用户代码运行在一个沙盒中，因此您没有权限进行绝大多数系统调用。</p>
+<h1>编译器解释器版本和参数</h1>
+<p>各个语言采用的是 <a href="https://wiki.debian.org/DebianTesting">debian:testing</a> 分支下的最新版编译器解释器。您可以查看 Vijos 的<a href="https://github.com/vijos/jd4/blob/master/Dockerfile">版本配置</a> 和 <a href="https://github.com/vijos/jd4/blob/master/examples/langs.yaml">运行配置</a>，或点击下方链接查看相应语言采用的编译器或解释器当前具体版本号。</p>
+<table>
+<thead>
+<tr>
+<th>语言名称</th>
+<th>Debian 包名称</th>
+<th>编译或运行参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free Pascal</td>
+<td><a href="https://packages.debian.org/testing/devel/fp-compiler">fp-compiler</a></td>
+<td><code>fpc -O2 -o/out/foo /in/foo.pas</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td><a href="https://packages.debian.org/testing/devel/gcc">gcc</a></td>
+<td><code>gcc -O2 -Wall -std=c99 -o /out/foo /in/foo.c -lm</code></td>
+</tr>
+<tr>
+<td>C++</td>
+<td><a href="https://packages.debian.org/testing/devel/g++">g++</a></td>
+<td><code>g++ -O2 -Wall -std=c++11 -o /out/foo /in/foo.cc -lm</code></td>
+</tr>
+<tr>
+<td>Java</td>
+<td><a href="https://packages.debian.org/testing/devel/openjdk-8-jdk-headless">openjdk-8-jdk-headless</a></td>
+<td><code>javac -d /out -encoding utf8 /in/Main.java</code></td>
+</tr>
+<tr>
+<td>Python</td>
+<td><a href="https://packages.debian.org/testing/devel/python">python</a></td>
+<td><code>python foo.py</code></td>
+</tr>
+<tr>
+<td>Python 3</td>
+<td><a href="https://packages.debian.org/testing/devel/python3">python3</a></td>
+<td><code>python3 foo.py</code></td>
+</tr>
+<tr>
+<td>PHP</td>
+<td><a href="https://packages.debian.org/testing/devel/php7.0-cli">php7.0-cli</a></td>
+<td><code>php foo.php</code></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><a href="https://packages.debian.org/testing/devel/rustc">rustc</a></td>
+<td><code>rustc -O -o /out/foo /in/foo.rs</code></td>
+</tr>
+<tr>
+<td>Haskell</td>
+<td><a href="https://packages.debian.org/testing/devel/ghc">ghc</a></td>
+<td><code>ghc -O -outputdir /tmp -o /out/foo /in/foo.hs</code></td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td><a href="https://packages.debian.org/testing/devel/libjavascriptcoregtk-4.0-bin">libjavascriptcoregtk-4.0-bin</a></td>
+<td><code>jsc foo.js</code></td>
+</tr>
+<tr>
+<td>Golang</td>
+<td><a href="https://packages.debian.org/testing/devel/golang">golang</a></td>
+<td><code>go build -o /out/foo /in/foo.go</code></td>
+</tr>
+</tbody>
+</table>
+</div></div></div><div class="section__footer" data-reactid="26"><div class="supplementary" data-reactid="27"><span class="icon icon-edit" data-reactid="28"></span><!-- react-text: 29 --> Edit this page on <!-- /react-text --><a href="https://github.com/vijos/about-vijos/blob/master/pages/help/user/compilers/index.md" target="_blank" data-reactid="30">GitHub</a></div></div></div></div><div class="medium-3 columns" data-reactid="31"><div class="section side" data-reactid="32"><ol class="menu" data-reactid="33"><li class="menu__item" data-reactid="34"><a class="menu__link" href="/help/user/measurements/" data-reactid="35">时间和内存消耗的测定</a></li><li class="menu__item" data-reactid="36"><a class="menu__link active" href="/help/user/compilers/" data-reactid="37">评测环境及编译器解释器参数</a></li><li class="menu__item" data-reactid="38"><a class="menu__link" href="/help/user/io/" data-reactid="39">输入输出</a></li></ol></div></div></div></div></div></div><div class="page--docs__footer" data-reactid="40"><div class="row" data-reactid="41"><div class="columns" data-reactid="42"><ul data-reactid="43"><li data-reactid="44"><!-- react-text: 45 -->Made with <!-- /react-text --><span class="icon icon-heart" data-reactid="46"></span><!-- react-text: 47 --> by <!-- /react-text --><a href="//vijos.org" data-reactid="48">Vijos.org</a></li><li data-reactid="49"><!-- react-text: 50 -->Generated from public files on <!-- /react-text --><a href="https://github.com/vijos/about-vijos" target="_blank" data-reactid="51">GitHub</a></li></ul></div></div></div></div></div><script type="text/javascript" src="//cdn.vijos.org/manifest.js"></script><script type="text/javascript" src="//cdn.vijos.org/vendors.js"></script><script type="text/javascript" src="//cdn.vijos.org/vj4.js"></script></body></html>
