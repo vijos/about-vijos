@@ -8,7 +8,7 @@ description: 和开发者及 VJ 其他用户保持联系
 
 - QQ 1 群：248452688
 
-### Vijos Foundation
+### Vijos Foundation 及法律相关事项
 
 - QQ: 514649176
 - Email: mrw at vijos.org
