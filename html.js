@@ -1,6 +1,7 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import { config } from 'config';
+import { prefixLink } from 'utils/link';
 
 const BUILD_TIME = new Date().getTime();
 
@@ -19,7 +20,7 @@ export default function HTML(props) {
   const title = DocumentTitle.rewind();
   let css, js;
   if (process.env.NODE_ENV === 'production') {
-    css = (<link rel="stylesheet" href="/styles.css" />);
+    css = (<link rel="stylesheet" href={prefixLink('/styles.css')} />);
   } else {
     js = (<script src={`/bundle.js?t=${BUILD_TIME}`} />);
   }

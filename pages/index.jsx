@@ -7,6 +7,7 @@ import DocumentTitle from 'react-document-title';
 import Section, { SectionHeader, SectionBody } from 'components/Section';
 import { resolveDocs } from 'utils/docHelper';
 import { i18n } from 'utils/i18n';
+import { prefixLink } from 'utils/link';
 import { config } from 'config';
 
 function getPageList(pages) {
@@ -14,7 +15,7 @@ function getPageList(pages) {
     <div className="typo"><ul>
       {pages.map(page => (
         <li key={page.path}>
-          <Link to={page.path}>{page.data.title}</Link>
+          <Link to={prefixLink(page.path)}>{page.data.title}</Link>
           { page.data.description ? <span className="supplementary page--docs__description">{page.data.description}</span> : null}
         </li>
       ))}

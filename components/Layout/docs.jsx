@@ -4,6 +4,7 @@ import { resolveDocs } from 'utils/docHelper';
 import BaseLayout from './base';
 import Section from 'components/Section';
 import { Menu, MenuLinkItem } from 'components/Menu';
+import { prefixLink } from 'utils/link';
 
 function getParentScopePages(currentPath, allPages) {
   let parentPath;
@@ -36,7 +37,7 @@ export default function DocsLayout(props) {
             <Menu>
               {otherPages.map(page => {
                 return (
-                  <MenuLinkItem key={page.href} href={page.href} active={page.active}>
+                  <MenuLinkItem key={page.href} href={prefixLink(page.href)} active={page.active}>
                     {page.title}
                   </MenuLinkItem>
                 );

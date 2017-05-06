@@ -8,6 +8,7 @@ import sub from 'string-sub';
 import { config } from 'config';
 import { i18n } from 'utils/i18n';
 import { resolveFirstDoc } from 'utils/docHelper';
+import { prefixLink } from 'utils/link';
 
 function buildLocationPath(currentLocation, allPages) {
   const links = [];
@@ -26,9 +27,11 @@ function buildLocationPath(currentLocation, allPages) {
       let href;
       if (linkInfo.href) {
         href = sub(linkInfo.href, pathInfo);
+        href = prefixLink(href);
       } else if (linkInfo.href_doc) {
         href = sub(linkInfo.href_doc, pathInfo);
         href = resolveFirstDoc(allPages, href).path;
+        href = prefixLink(href);
       } else {
         href = '#'
       }

@@ -22,6 +22,6 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-links"
+    "deploy": "gatsby build --prefix-links && gh-pages -d public"
   }
 }
