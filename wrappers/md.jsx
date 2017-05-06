@@ -1,7 +1,7 @@
 import React from 'react'
 import DocumentTitle from 'react-document-title'
 import Section from 'components/Section';
-import { config } from 'config'
+import { config } from 'config';
 
 module.exports = React.createClass({
   propTypes () {

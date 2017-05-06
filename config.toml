@@ -4,6 +4,7 @@ vijosSiteTitle = "Vijos"
 vijosSiteUrl = "//vijos.org/"
 projectUrl = "https://github.com/vijos/about-vijos"
 editUrl = "https://github.com/vijos/about-vijos/blob/master/pages"
+linkPrefix = "https://vijos.github.io/about-vijos"
 
 [[location]]
 match = "/about/:topic"

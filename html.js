@@ -1,6 +1,6 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import { config } from 'config'
+import { config } from 'config';
 
 const BUILD_TIME = new Date().getTime();
 

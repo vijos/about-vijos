@@ -1,13 +1,13 @@
+import './index.styl';
+
 import _ from 'lodash';
-import React from 'react'
-import { Link } from 'react-router'
-import DocumentTitle from 'react-document-title'
+import React from 'react';
+import { Link } from 'react-router';
+import DocumentTitle from 'react-document-title';
 import Section, { SectionHeader, SectionBody } from 'components/Section';
 import { resolveDocs } from 'utils/docHelper';
 import { i18n } from 'utils/i18n';
-import { config } from 'config'
-
-import './index.styl';
+import { config } from 'config';
 
 function getPageList(pages) {
   return (
