@@ -1,4 +1,5 @@
 ---
+order: 0
 title: 安装 Vijos
 description: 从源码安装部署 Vijos 的系统要求、目录结构、步骤等
 ---
