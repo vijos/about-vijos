@@ -37,11 +37,57 @@ Vijos 依赖于以下软件工作：
 
 ### 1.1 对于 Debian 和 Ubuntu 系统
 
-TODO
+以下操作自行添加sudo.
+
+#### 1.1.1安装Python3
+
+Linux默认的是Python2,但是我们需要Python3.
+
+Ubantu自带python3,直接切换python3
+```bash
+rm /usr/bin/python 
+ln -s /usr/bin/python3 /usr/bin/python 
+apt-get install -y python3-pip
+pip3 install --upgrade pip
+```
+
+如果系统没有Python3的话就要手动安装了
+```bash
+wget http://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz
+tar zxvf Python-3.5.0.tgz
+cd python-3.5.0
+./configure
+make
+make install
+ln -s /opt/python3/bin/python3 /usr/bin/python3
+```
+
+
+#### 1.1.2安装其他依赖
+千万不要直接用apt-get install安装npm和mongodb!!!
+
+git与rabbitmq:
+```bash
+apt-get install git
+apt-get install -y rabbitmq-server
+```
+npm,npm5已经集成在nodejs8里了.:
+```
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
+apt-get install -y nodejs
+npm config set python python3.5
+```
+mongodb:
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+apt-get update
+apt-get install -y mongodb-org
+```
 
 ### 1.2 对于 RHEL, Fedora 和 CentOS 系统
 
-TODO
+上述apt-get换成yum
 
 ### 1.3 对于 MacOS 系统
 
@@ -88,6 +134,8 @@ Vijos 使用 [MaxMind GeoLite City DB](http://dev.maxmind.com/geoip/geoip2/geoli
 curl "http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz" | gunzip -c > GeoLite2-City.mmdb
 ```
 
+需要比较长的时间,建议开个新终端处理.
+
 ## 6. 编译生成前端代码
 
 ```bash
@@ -102,7 +150,72 @@ npm run build
 python3 -m vj4.server --debug --listen http://0.0.0.0:8888
 ```
 
+如果不加listen命令的话默认是http://127.0.0.1:8888
 
+如果出现27017表示mongodb安装错误
+
+如果出现5672表示ribbitmq安装错误
+
+## 7. 简单测试
+添加一个超级账号,中括号也要替换.
+
+```bash
+alias pm="python3 -m"
+pm vj4.model.user add -1 [你的账号] [你的密码] [你的邮箱]
+pm vj4.model.user set_superadmin -1
+pm vj4.model.adaptor.problem add system "Dummy Problem" "# It *works*" -1 1000
+```
+
+开始测试Web端的功能吧!
+
+如果启动失败可能是因为mongodb错误的退出,运行如下命令修复重启.
+
+```bash
+sudo rm -f /var/lib/mongodb/mongod.lock
+python3 -m vj4.server --debug --listen http://0.0.0.0:8888
+```
 # 评测机的安装部署
 
-TODO
+##安装Docker
+
+```bash
+apt-get install docker.io
+```
+
+然后clone项目并且安装依赖:
+
+```bash
+git clone https://github.com/vijos/jd4
+cd jd4
+pip3 install -r requirements.txt
+```
+
+接下来修改example下的config文件
+
+确保你已经创建了测评机的账户
+
+地址为之前监听的端口
+
+用户名填入测评机的用户名
+
+密码填入测评机的登陆密码
+
+```bash
+mkdir -p ~/.config/jd4
+cp examples/config.yaml ~/.config/jd4/
+ln -sr examples/langs.yaml ~/.config/jd4/
+```
+
+编译Cython:
+
+```bash
+python3 setup.py build_ext --inplace
+Use the following command to run the daemon:
+```
+
+最后开启服务:
+
+```bash
+python3 -m jd4.daemon
+```
+至此Web端和测评机已经能够通讯,赶快提交一道题测试下吧!
